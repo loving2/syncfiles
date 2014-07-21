@@ -52,6 +52,10 @@ fi
 if [[ $(hostname) == *squark* ]]; then 
     source ~/root/bin/thisroot.sh
 fi
+# cmsenv compatibility for fnal
+if [[ $(hostname) == *lpc* ]]; then
+    source /uscmst1/prod/sw/cms/shrc prod
+fi
 
 alias l='ls -l'
 alias ll='ls -l'
