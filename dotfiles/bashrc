@@ -67,6 +67,7 @@ alias bc='bc -l'
 alias root='root -b -l'
 alias vrc='vim ~/.vimrc'
 alias git='unset SSH_ASKPASS; git'
+alias vom='vim' #nobody knows what vom is...
 
 function gridtick {
 grid-proxy-init -debug -verify
