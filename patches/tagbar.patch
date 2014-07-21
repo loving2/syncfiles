@@ -1,0 +1,4 @@
+36c36
+< if v:version == 700 && !has('patch167')
+---
+> if v:version == 700 && !has('patch167') && !has('patch237')
