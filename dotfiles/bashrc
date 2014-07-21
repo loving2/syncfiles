@@ -56,8 +56,8 @@ fi
 alias l='ls -l'
 alias ll='ls -l'
 alias lk='ls -lthr'
-alias afswork='cd /afs/cern.ch/work/n/namin/public/'
-alias hadoop='cd /hadoop/cms/store/user/namin/ && ls -l'
+alias afswork='cd /afs/cern.ch/work/a/aschneid/'
+#alias hadoop='cd /hadoop/cms/store/user/aschneid/ && ls -l'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias gridui='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh'
@@ -65,25 +65,48 @@ alias ,,='echo "$PWD -> $OLDPWD" && cd $OLDPWD'
 alias cd..='cd ..'
 alias bc='bc -l'
 alias root='root -b -l'
-alias gridtick='grid-proxy-init -debug -verify'
-alias vomstick='voms-proxy-init -voms cms'
-alias crabscript='source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh'
 alias vrc='vim ~/.vimrc'
 
+function gridtick {
+grid-proxy-init -debug -verify
+}
+export -f gridtick
 
-# ssh
-alias fnal='kinit -A -f namin@FNAL.GOV; ssh -2 namin@cmslpc-sl5.fnal.gov'
-alias lxplus5='ssh namin@lxplus5.cern.ch'
-alias lxplus='ssh namin@lxplus.cern.ch'
-alias brazos='ssh amin.nj@hurr.tamu.edu'
-alias hurr='ssh amin.nj@hurr.tamu.edu'
-alias oldschool='ssh amin.nj@oldschool.tamu.edu'
-alias ucsd='ssh namin@uaf-9.t2.ucsd.edu'
-alias ucsb='ssh namin@squark.physics.ucsb.edu'
-alias squark='ssh namin@squark.physics.ucsb.edu'
-alias io='ssh amin.nj@io.physics.tamu.edu'
-alias grad='ssh namin@gshell.physics.ucsb.edu'
-#alias eos='ssh namin@eos.tamu.edu'
+function vomstick {
+voms-proxy-init -voms cms
+}
+export -f vomstick
+
+function gridui {
+source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh
+}
+export -f gridui
+
+function crabscript {
+source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh
+}
+export -f crabscript
+
+usingCrab=false
+function crabenv {
+gridui
+cmsenv
+crabscript
+usingCrab=true
+}
+export -f crabenv
+
+#ssh
+
+function fnal {
+kinit -A -f $USER@FNAL.GOV; ssh -2 $USER@cmslpc-sl5.fnal.gov
+}
+export -f fnal
+alias lxplus5='ssh aschneid@lxplus5.cern.ch'
+alias lxplus='ssh aschneid@lxplus.cern.ch'
+alias brazos='ssh hogenshpogen@hurr.tamu.edu'
+alias hurr='ssh hogenshpogen@hurr.tamu.edu'
+alias io='ssh hogenshpogen@io.physics.tamu.edu'
 
 
 alias tree='tree -C'
@@ -95,26 +118,13 @@ export HISTSIZE=100000
 export PYTHONPATH="${PYTHONPATH}:$HOME/syncfiles/pyfiles"
 
 # if [ "$(uname -o 2>/dev/null)" = "Cygwin" ]; then
-alias desktop='cd /cygdrive/c/Users/Nick/Desktop'
+alias desktop='cd /cygdrive/c/Users/Austin/Desktop'
 function say() { mplayer -really-quiet "http://translate.google.com/translate_tts?tl=en&q=$*"; }
 #fi
 
 function xterms {
 export DISPLAY=:0.0
 xrdb -merge ~/.Xresources
-}
-
-usingCrab=false
-function crabenv {
-echo ">> source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh"
-source '/afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh'
-echo ">> cmsenv"
-cmsenv
-echo ">> source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh"
-source '/afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh'
-echo ">> usingCrab is true"
-usingCrab=true
-
 }
 
 function ccreate {
@@ -242,14 +252,14 @@ if [ -f $1 ] ; then
    fi
 }
 
-function web {
-if [ $# -gt 0 ]; then
-    chmod -R a+r $@
-    scp -rp $@ namin@web.physics.ucsb.edu:~/public_html/dump/
-    for file in "$@"; do
-        echo "http://web.physics.ucsb.edu/~namin/dump/$file"
-    done
-else
-    echo "Usage: web [input files]"
-fi
-}
+#function web {
+#if [ $# -gt 0 ]; then
+#    chmod -R a+r $@
+#    scp -rp $@ namin@web.physics.ucsb.edu:~/public_html/dump/
+#    for file in "$@"; do
+#        echo "http://web.physics.ucsb.edu/~namin/dump/$file"
+#    done
+#else
+#    echo "Usage: web [input files]"
+#fi
+#}
