@@ -134,6 +134,10 @@ execute pathogen#infect()
     autocmd FileType cpp set commentstring=\/\/\ %s
 " }
 
+" resizing for cygwin {
+    autocmd VimResized Silent 'kill -WINCH $$<CR>'
+" }
+
 " abbreviations for misspellings
 abbr hte the
 abbr teh the
@@ -167,7 +171,6 @@ noremap J 5<down>
 " remap arrow keys for long lines
 noremap <Down> gj
 noremap <Up> gk
-
 
 
 " yank to end of line
@@ -264,6 +267,10 @@ else
 endif
 
 " }}}
+
+command! -nargs=1 Silent
+            \ | execute ':silent !'.<q-args>
+            \ | execute ':redraw!'
 
 
 function! g:ToggleColorColumn()
