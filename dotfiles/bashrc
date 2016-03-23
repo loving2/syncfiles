@@ -25,7 +25,7 @@ echo -ne "\033]0;${USER}@`hostname`:`pwd`\007"
 # Example: [23:35:56] [amin.nj@elara] ~/syncfiles/dotfiles > 
 
 #TODO reinstate below line when puttycyg works
-PS="\[\033[01;34m\][\t]\[\e[0m\] \[\033[00;34m\][\u@\h]\[\e[0m\] \w"
+PS="\[\033[01;34m\][\t]\[\e[0m\] \[\033[00;36m\][\u@\h]\[\e[0m\] \w"
 #PS="\[\033[01;34m\][\t]\[\e[0m\] \[\033[00;33m\][\u@\h]\[\e[0m\] \w"
 
 if [ -n "$WINDOW" ]; then
