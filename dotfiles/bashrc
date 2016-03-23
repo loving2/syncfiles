@@ -45,28 +45,14 @@ export DISPLAY=:0.0
 
 alias tmux='tmux -2' # fixes colors in vim
 
-# cmsenv compatibility for ucsd uaf
-if [[ $(hostname) == *uaf-* ]]; then 
-    source /code/osgcode/cmssoft/cms/cmsset_default.sh
-fi
-if [[ $(hostname) == *squark* ]]; then 
-    source ~/root/bin/thisroot.sh
-fi
-# cmsenv compatibility for fnal
-if [[ $(hostname) == *lpc* ]]; then
-    source /uscmst1/prod/sw/cms/shrc prod
-fi
-
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.flac=01;35:*.mp3=01;35:*.mpc=01;35:*.ogg=01;35:*.wav=01;35:';
 
 alias l='ls -l'
 alias ll='ls -l'
 alias lk='ls -lthr'
-alias afswork='cd /afs/cern.ch/work/a/aschneid/'
 #alias hadoop='cd /hadoop/cms/store/user/aschneid/ && ls -l'
 alias grep='grep --color=auto'
 alias ..='cd ..'
-alias gridui='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh'
 alias ,,='echo "$PWD -> $OLDPWD" && cd $OLDPWD'
 alias cd..='cd ..'
 alias bc='bc -l'
@@ -75,46 +61,7 @@ alias vrc='vim ~/.vimrc'
 alias git='unset SSH_ASKPASS; git'
 alias vom='vim' #nobody knows what vom is...
 
-function gridtick {
-grid-proxy-init -debug -verify
-}
-export -f gridtick
-
-function vomstick {
-voms-proxy-init -voms cms
-}
-export -f vomstick
-
-function gridui {
-source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh
-}
-export -f gridui
-
-function crabscript {
-source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh
-}
-export -f crabscript
-
-usingCrab=false
-function crabenv {
-gridui
-cmsenv
-crabscript
-usingCrab=true
-}
-export -f crabenv
-
 #ssh
-
-function fnal {
-kinit -A -f $USER@FNAL.GOV; ssh -2 $USER@cmslpc-sl5.fnal.gov
-}
-export -f fnal
-alias lxplus5='ssh aschneid@lxplus5.cern.ch'
-alias lxplus='ssh aschneid@lxplus.cern.ch'
-alias brazos='ssh hogenshpogen@hurr.tamu.edu'
-alias hurr='ssh hogenshpogen@hurr.tamu.edu'
-alias io='ssh hogenshpogen@io.physics.tamu.edu'
 
 
 alias tree='tree -C'
@@ -134,92 +81,6 @@ function xterms {
 export DISPLAY=:0.0
 xrdb -merge ~/.Xresources
 }
-
-function ccreate {
-if $usingCrab; then
-    crab -create -cfg $1
-else
-    echo "Do crabenv first!"
-fi
-}
-
-function cands {
-if $usingCrab; then 
-
-    cfg=$1
-    foldername=`cat ${cfg} | grep ui_working_dir | cut -d "=" -f 2 | tr -d " "`
-    if [ -z "$foldername" ]; then
-        foldername="${cfg%.*}"
-        foldername+="_"
-        foldername+=`date -d "today" +"%Y%m%d_%H%M%S"`
-    fi
-
-    crab -create -cfg ${cfg} -USER.ui_working_dir ${foldername}
-    crab -submit -c ${foldername}
-else
-    echo "Do crabenv first!"
-fi
-
-
-}
-
-
-function csub {
-
-if $usingCrab; then 
-
-    foldername=$1
-    if [[ $1 =~ .*cfg ]]
-    then
-        foldername=`cat $1 | grep ui_working_dir | cut -d "=" -f 2 | tr -d " "`
-    fi
-
-    crab -submit -c ${foldername}
-else
-    echo "Do crabenv first!"
-fi
-
-
-}
-
-
-function cstat {
-if $usingCrab; then
-    crab -status -c $1
-else
-    echo "Do crabenv first!"
-fi
-}
-
-function cget {
-if $usingCrab; then
-    crab -getoutput -c $1
-else
-    echo "Do crabenv first!"
-fi
-}
-
-function ckill {
-if $usingCrab; then
-    if [ -z "$2" ]; then
-        read -p "Are you sure you want to kill all jobs? " -n 1 -r
-        echo    # (optional) move to a new line
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            njobs=`grep "Arguments" ${1}/share/*.jdl | tail --line 1 | awk '{print $3}'`
-            crab -kill 1-${njobs} -c $1
-        fi
-    else
-        read -p "Are you sure you want to kill job(s) ${2}? " -n 1 -r
-        echo    # (optional) move to a new line
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            crab -kill $2 -c $1
-        fi
-    fi
-else
-    echo "Do crabenv first!"
-fi
-}
-
 
 function screens {
 COUNTER=0
@@ -285,14 +146,3 @@ else
 fi
 }
 
-#function web {
-#if [ $# -gt 0 ]; then
-#    chmod -R a+r $@
-#    scp -rp $@ namin@web.physics.ucsb.edu:~/public_html/dump/
-#    for file in "$@"; do
-#        echo "http://web.physics.ucsb.edu/~namin/dump/$file"
-#    done
-#else
-#    echo "Usage: web [input files]"
-#fi
-#}
