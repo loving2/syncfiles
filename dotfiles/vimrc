@@ -1,5 +1,6 @@
 "Formatting
 syntax on
+autocmd BufEnter * :syntax sync fromstart
 " fixes error syntax for $( ) in .sh files
 let g:is_posix = 1
 set background=light
