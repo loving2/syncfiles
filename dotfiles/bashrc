@@ -64,6 +64,7 @@ alias vrc='vim ~/.vimrc'
 alias vom='vim' #nobody knows what vom is...
 alias pub='ssh -X dloving@pub.icecube.wisc.edu'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias back='rsync -aPvc -e ssh /home/alex/workspace/ dloving@pub.icecube.wisc.edu:/net/icecube-usr/dloving/laptopbackup/'
 
 #ssh
 
