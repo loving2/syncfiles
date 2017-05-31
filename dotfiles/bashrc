@@ -1,3 +1,5 @@
+#run ROOT script to setup environment variables
+. /home/alex/root/bin/thisroot.sh
 # .bashrc asdf
 
 # If not running interactively, don't do anything
@@ -56,10 +58,12 @@ alias ..='cd ..'
 alias ,,='echo "$PWD -> $OLDPWD" && cd $OLDPWD'
 alias cd..='cd ..'
 alias bc='bc -l'
-alias root='root -b -l'
+alias root='root -l'
 alias vrc='vim ~/.vimrc'
-alias git='unset SSH_ASKPASS; git'
+#alias git='unset SSH_ASKPASS; git'
 alias vom='vim' #nobody knows what vom is...
+alias pub='ssh -X dloving@pub.icecube.wisc.edu'
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 
 #ssh
 
