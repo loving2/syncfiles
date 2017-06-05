@@ -19,6 +19,8 @@ if [ "$TERM" != "dumb" ]; then
     fi
 fi
 
+#map capslock to control
+setxkbmap -option ctrl:nocaps
 
 
 # set window title to user@host:pwd
