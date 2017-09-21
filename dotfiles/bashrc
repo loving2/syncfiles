@@ -66,7 +66,15 @@ alias vrc='vim ~/.vimrc'
 alias vom='vim' #nobody knows what vom is...
 alias pub='ssh -X dloving@pub.icecube.wisc.edu'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
-alias back='rsync -aPvc -e ssh /home/alex/workspace/ dloving@pub.icecube.wisc.edu:/net/icecube-usr/dloving/laptopbackup/'
+alias back='rsync -aPvc -e ssh /home/alex/Desktop/CLONEDIR/ dloving@pub.icecube.wisc.edu:/net/icecube-usr/dloving/laptopbackup/'
+alias back2='rsync -aPvc -e ssh /home/alex/workspace/ dloving@pub.icecube.wisc.edu:/net/icecube-usr/dloving/laptopbackup/'
+alias udaq2='ssh -X root@172.16.55.26'
+alias bbg='ssh -X bbg'
+alias clone='/home/alex/Desktop/CLONEDIR/clonethings.sh'
+alias eagle='/home/alex/eagle-8.3.2/eagle'
+alias bin='scp /home/alex/workspace/microdaq/uDAQ-2.0/Release/uDAQ-2.0.bin bbg:/root/Loving/github/bbb/src_C'
+alias data='scp bbg:/root/Loving/github/bbb/src_C/*.dat .'
+
 
 #ssh
 
