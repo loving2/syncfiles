@@ -1,0 +1,40 @@
+Host bbg
+    Hostname 172.16.55.26
+    Port 22
+    User root
+    ControlMaster auto
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    ForwardAgent yes
+    KeepAlive yes
+    ServerAliveInterval 55
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    IdentityFile ~/.ssh/bbg_alex_rsa
+
+Host pub
+    Hostname pub.icecube.wisc.edu
+    Port 22
+    User dloving
+    ControlMaster auto
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    ForwardAgent yes
+    KeepAlive yes
+    ServerAliveInterval 55
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    IdentityFile ~/.ssh/dloving_rsa
+
+Host 172.16.55.26
+    User root
+    ControlMaster auto
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    ForwardAgent yes
+    KeepAlive yes
+    ServerAliveInterval 55
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    ProxyCommand ssh -qax pub "nc %h %p"
+    IdentityFile ~/.ssh/bbg_alex_rsa
