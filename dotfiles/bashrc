@@ -73,10 +73,15 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias bbg='ssh bbg'
 alias bbg_pub='ssh 172.16.55.26'
 alias redlight='ssh root@172.16.55.17'
+alias daq='ssh daq@172.16.55.161'
+alias chips='ssh dloving@chipsgpvm01.fnal.gov'
+alias nova1daq='ssh novadaq@novatest01.fnal.gov'
+alias nova2daq='ssh novadaq@novatest02.fnal.gov'
 alias clone='/home/alex/Desktop/CLONEDIR/clonethings.sh'
-alias eagle='nohup /home/alex/eagle-8.6.3/eagle &'
+alias eagle='nohup /home/alex/eagle-8.7.0/eagle &'
 alias zcl='nohup /home/alex/electrum-zcl-Z-1.0.3/electrum &'
 alias btcp='nohup /home/alex/electrum-btcp-P-1.0.0/electrum &'
+alias kinit='kinit -f dloving@FNAL.GOV'
 
 alias bin='scp /home/alex/workspace/microdaq/uDAQ-2.0/Release/uDAQ-2.0.bin 172.16.55.26:/root/Loving/github/bbb/src_C'
 alias data='scp bbg:/root/Loving/github/bbb/src_C/*.dat .'
@@ -92,6 +97,7 @@ alias histo='~/syncfiles/pyfiles/histo.py'
 export HISTFILESIZE=500000
 export HISTSIZE=100000
 export PYTHONPATH="${PYTHONPATH}:$HOME/syncfiles/pyfiles"
+export CVS_RSH=ssh
 
 # if [ "$(uname -o 2>/dev/null)" = "Cygwin" ]; then
 alias desktop='cd /cygdrive/c/Users/Austin/Desktop'
@@ -167,3 +173,9 @@ else
 fi
 }
 
+
+# added by Anaconda2 installer
+export PATH="/home/alex/anaconda2/bin:$PATH"
+
+# added by Anaconda3 installer
+export PATH="/home/alex/anaconda3/bin:$PATH"
