@@ -81,10 +81,14 @@ alias clone='/home/alex/Desktop/CLONEDIR/clonethings.sh'
 alias eagle='nohup /home/alex/eagle-9.0.1/eagle &'
 alias zcl='nohup /home/alex/electrum-zcl-Z-1.0.3/electrum &'
 alias btcp='nohup /home/alex/electrum-btcp-P-1.0.0/electrum &'
-alias kinit='kinit -f dloving@FNAL.GOV'
+alias kinita='kinit -f dloving@FNAL.GOV'
+alias kinitm='kinit -f mcampbel@FNAL.GOV'
 alias uwmad='sudo vpnc uwmadison.conf'
 alias notebook='nohup jupyter notebook &'
 alias runescape='java -jar /home/alex/Downloads/RuneLite.jar'
+
+alias epic='rdesktop -g 95% -u aloving@epic.com epic41879'
+
 
 alias bin='scp /home/alex/workspace/microdaq/uDAQ-2.0/Release/uDAQ-2.0.bin 172.16.55.26:/root/Loving/github/bbb/src_C'
 alias data='scp bbg:/root/Loving/github/bbb/src_C/*.dat .'
@@ -191,3 +195,4 @@ export PATH="/home/alex/anaconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
 export MANPATH="/usr/local/texlive/2017/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="/usr/local/texlive/2017/texmf-dist/doc/info:$INFOPATH"
+export PATH="/home/alex/idea-IC-183.5429.30/bin:$PATH"
